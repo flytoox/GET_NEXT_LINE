@@ -6,7 +6,7 @@
 /*   By: obelaizi <obelaizi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 20:38:04 by obelaizi          #+#    #+#             */
-/*   Updated: 2022/11/14 18:49:48 by obelaizi         ###   ########.fr       */
+/*   Updated: 2022/11/14 21:32:05 by obelaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ignore(char *s);
 char	*fill(char *src);
 char	*get_next_line(int fd);
+int		handle_error(char *rest, int fd);
 
 #endif

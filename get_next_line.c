@@ -6,28 +6,11 @@
 /*   By: obelaizi <obelaizi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 20:40:41 by obelaizi          #+#    #+#             */
-/*   Updated: 2022/11/14 18:42:21 by obelaizi         ###   ########.fr       */
+/*   Updated: 2022/11/14 21:46:05 by obelaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-int	line(char *buf, char **rest, int fd)
-{
-	int	i;
-
-	while (!check_char(*rest, '\n'))
-	{
-		i = read(fd, buf, BUFFER_SIZE);
-		if (i == -1)
-			return (free(buf), free(*rest), 0);
-		if (!i)
-			break ;
-		buf[i] = 0;
-		*rest = ft_strjoin(*rest, buf);
-	}
-	return (1);
-}
 
 char	*ft_strjoin(char *s1, char *s2)
 {
@@ -97,16 +80,14 @@ char	*get_next_line(int fd)
 	char		*result;
 	int			i;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+	if (handle_error(rest, fd))
+		return (rest = NULL, NULL);
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!buf)
 		return (NULL);
 	while (!check_char(rest, '\n'))
 	{
 		i = read(fd, buf, BUFFER_SIZE);
-		if (i == -1)
-			return (free(buf), NULL);
 		buf[i] = 0;
 		if (!i)
 			break ;

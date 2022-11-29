@@ -6,7 +6,7 @@
 /*   By: obelaizi <obelaizi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 16:41:18 by obelaizi          #+#    #+#             */
-/*   Updated: 2022/11/14 12:31:55 by obelaizi         ###   ########.fr       */
+/*   Updated: 2022/11/14 21:37:50 by obelaizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,18 @@ char	*ft_strdup(const char *src)
 	}
 	cp[j] = 0;
 	return (cp);
+}
+
+int	handle_error(char *rest, int fd)
+{
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (1);
+	if (read(fd, NULL, 0) < 0)
+	{
+		if (rest)
+			free(rest);
+		rest = NULL;
+		return (1);
+	}
+	return (0);
 }
